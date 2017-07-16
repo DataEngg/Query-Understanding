@@ -1,0 +1,16 @@
+{
+  "or": "should",
+  "and": "must",
+  "cheap":"sort by price",
+  "greater":"filter above the ",
+  "less":"filter below the ",
+  "above":"filter above the",
+  "below":"filter below the ",
+  "under":"filter below the ",
+  "price":"filter on price",
+  "size":"filter on size",
+  "without":"must not",
+  "small":"filter on small size",
+  "large":"filter on large size",
+  "medium":"filter on medium size"
+}
