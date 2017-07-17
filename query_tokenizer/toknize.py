@@ -2,7 +2,8 @@ import os
 
 from nltk.corpus import stopwords
 from nltk.tokenize import TweetTokenizer
-from color import colors
+from color import Colors
+from price import Price
 
 
 class Tokize(object):
@@ -29,9 +30,11 @@ class Tokize(object):
             query = input()
             if query:
                 list_token = [item.lower().strip() for item in query.lower().split(' ')]
-                value, list_token = colors().finding_colors(list_tokens=list_token)
-                print(list_token)
-                print(value)
+                value, list_token = Colors().finding_colors(list_tokens=list_token)
+                query = " ".join(list_token)
+                new_query, val = Price().finding_price(string=query, val=value)
+                print(new_query)
+                print(val)
 
 
 if __name__ == '__main__':

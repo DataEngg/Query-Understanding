@@ -1,7 +1,7 @@
 import os
 
 
-class colors(object):
+class Colors(object):
     def __init__(self):
         self.data_path = os.path.join("dataset")
         self.csv_path = os.path.join(self.data_path)
