@@ -4,6 +4,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import TweetTokenizer
 from color import Colors
 from price import Price
+from gender import Gender
+from term import  Term
 
 
 class Tokize(object):
@@ -17,8 +19,6 @@ class Tokize(object):
         """
         self.data_path = os.path.join(os.path.abspath(os.path.join("..", os.path.abspath('..'))), 'dataset')
         self.csv_path = os.path.join(self.data_path)
-        self.tknzr = TweetTokenizer()
-        # self.cachedStopWords = set(stopwords.words("english"))
 
     def tokens(self):
         """
@@ -33,6 +33,8 @@ class Tokize(object):
                 value, list_token = Colors().finding_colors(list_tokens=list_token)
                 query = " ".join(list_token)
                 new_query, val = Price().finding_price(string=query, val=value)
+                new_query, val = Gender().finding_gender(new_query, val=val)
+                val = Term().finding_term(new_query, val=val)
                 print(new_query)
                 print(val)
 
