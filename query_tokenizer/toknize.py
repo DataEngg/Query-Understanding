@@ -5,7 +5,7 @@ from nltk.tokenize import TweetTokenizer
 from color import Colors
 from price import Price
 from gender import Gender
-from term import  Term
+from term import Term
 
 
 class Tokize(object):
@@ -20,7 +20,7 @@ class Tokize(object):
         self.data_path = os.path.join(os.path.abspath(os.path.join("..", os.path.abspath('..'))), 'dataset')
         self.csv_path = os.path.join(self.data_path)
 
-    def tokens(self):
+    def tokens(self, color=True, price=True, gender=True):
         """
         Tokenize the sentence.
         """
@@ -29,15 +29,24 @@ class Tokize(object):
             print("Enter the query for test")
             query = input()
             if query:
-                list_token = [item.lower().strip() for item in query.lower().split(' ')]
-                value, list_token = Colors().finding_colors(list_tokens=list_token)
-                query = " ".join(list_token)
-                new_query, val = Price().finding_price(string=query, val=value)
-                new_query, val = Gender().finding_gender(new_query, val=val)
-                val = Term().finding_term(new_query, val=val)
-                print(new_query)
-                print(val)
+                try:
+                    value = {}
+                    list_token = [item.lower().strip() for item in query.lower().split(' ')]
+                    if color:
+                        value, list_token = Colors().finding_colors(list_tokens=list_token)
+                    query = " ".join(list_token)
+                    if price:
+                        query, value = Price().finding_price(string=query, val=value)
+                    if gender:
+                        query, value = Gender().finding_gender(query, val=value)
+                    val = Term().finding_term(query, val=value)
+                    print(query)
+                    print(val)
+                except Exception as e:
+                    import traceback
+                    print(traceback.format_exc())
+                    print("No Mapping")
 
 
 if __name__ == '__main__':
-    Tokize().tokens()
+    Tokize().tokens(color=True,gender=True)
