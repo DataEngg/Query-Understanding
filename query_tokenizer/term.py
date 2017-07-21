@@ -4,11 +4,11 @@ from nltk.corpus import stopwords
 class Term(object):
     def __init__(self):
         self.cachedStopWords = {"stop": [
-            "a", "an", "and", "are", "as", "at", "be", "but", "by",
+            "a", "an", "are", "as", "at", "be", "but",
             "for", "if", "in", "into", "is", "it",
-            "no", "not", "of", "on", "or", "such",
+            "no", "not", "of", "on", "such",
             "that", "the", "their", "then", "there", "these",
-            "they", "this", "to", "was", "will", "with"]}
+            "they", "this", "to", "was", "will", "with", "and", "or", "rs", "price", "gender", "color"]}
         pass
 
     def finding_term(self, query, val):

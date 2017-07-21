@@ -8,7 +8,7 @@ from gender import Gender
 from term import Term
 
 
-class Tokize(object):
+class Annotater(object):
     """
     Split the raw query into set of tokens via help of tokenizer.
     """
@@ -20,7 +20,7 @@ class Tokize(object):
         self.data_path = os.path.join(os.path.abspath(os.path.join("..", os.path.abspath('..'))), 'dataset')
         self.csv_path = os.path.join(self.data_path)
 
-    def tokens(self, color=True, price=True, gender=True):
+    def annotate(self, color=True, price=True, gender=True):
         """
         Tokenize the sentence.
         """
@@ -49,4 +49,4 @@ class Tokize(object):
 
 
 if __name__ == '__main__':
-    Tokize().tokens(color=True,gender=True)
+    Annotater().annotate(color=True,gender=True)
