@@ -19,7 +19,8 @@ class Shop(object):
         if len(list_tokens) == 2:
             if list_tokens[1].lower() in self.s:
                 val['shop'].append(list_tokens[1].lower())
-            return list_tokens[0], val
+                return list_tokens[0], val
+            return " ".join(list_tokens),val
         elif len(list_tokens) == 1:
             return list_tokens[0], val
         return '', val
