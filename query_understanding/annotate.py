@@ -5,6 +5,7 @@ from nltk.tokenize import TweetTokenizer
 from color import Colors
 from price import Price
 from gender import Gender
+from shop import Shop
 from term import Term
 
 
@@ -20,7 +21,7 @@ class Annotater(object):
         self.data_path = os.path.join(os.path.abspath(os.path.join("..", os.path.abspath('..'))), 'dataset')
         self.csv_path = os.path.join(self.data_path)
 
-    def annotate(self, color=True, price=True, gender=True):
+    def annotate(self, color=True, price=True, gender=True,shop=True):
         """
         Tokenize the sentence.
         """
@@ -39,6 +40,8 @@ class Annotater(object):
                         query, value = Price().finding_price(string=query, val=value)
                     if gender:
                         query, value = Gender().finding_gender(query, val=value)
+                    if shop:
+                        query, value = Shop().finding_shop(query, val=value)
                     val = Term().finding_term(query, val=value)
                     print(query)
                     print(val)
