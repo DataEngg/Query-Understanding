@@ -1,5 +1,3 @@
-from nltk.corpus import stopwords
-
 
 class Term(object):
     def __init__(self):

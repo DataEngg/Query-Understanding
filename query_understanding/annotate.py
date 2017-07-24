@@ -7,6 +7,7 @@ from price import Price
 from gender import Gender
 from shop import Shop
 from term import Term
+from size import Size
 
 
 class Annotater(object):
@@ -21,7 +22,7 @@ class Annotater(object):
         self.data_path = os.path.join("test_dataset")
         self.csv_path = os.path.join(self.data_path)
 
-    def annotate(self, color=True, price=True, gender=True, shop=True):
+    def annotate(self, color=True, price=True, gender=True, shop=True, size=True):
         """
         Tokenize the sentence.
         """
@@ -36,6 +37,8 @@ class Annotater(object):
                     if color:
                         value, list_token = Colors().finding_colors(list_tokens=list_token)
                     query = " ".join(list_token)
+                    if size:
+                        query, value = Size().finding_size(query, value)
                     if price:
                         query, value = Price().finding_price(string=query, val=value)
                     if gender:
@@ -50,11 +53,11 @@ class Annotater(object):
                     print(traceback.format_exc())
                     print("No Mapping")
 
-    def test_annotate(self, color=True, price=True, gender=True, shop=True):
+    def test_annotate(self, color=True, price=True, gender=True, shop=True, size=True):
         """
         Tokenize the sentence.
         """
-        file_open = open(os.path.join(self.csv_path, "answer.csv"),'w')
+        file_open = open(os.path.join(self.csv_path, "answer.csv"), 'w')
         with open(os.path.join(self.csv_path, "by.csv")) as fout:
             for query in fout.readlines():
                 if query:
@@ -81,5 +84,5 @@ class Annotater(object):
 
 
 if __name__ == '__main__':
-    # Annotater().annotate(color=True,gender=True,price=True,shop=True)
-    Annotater().test_annotate(color=True, gender=True, price=True, shop=True)
+    Annotater().annotate(color=True, gender=True, price=True, shop=True, size=True)
+    # Annotater().test_annotate(color=True, gender=True, price=True, shop=True,size=True)
