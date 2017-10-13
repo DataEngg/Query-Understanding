@@ -27,3 +27,4 @@ class Shop(object):
         elif len(list_tokens) == 1:
             return " ".join(list_tokens), val
         return '', val
+

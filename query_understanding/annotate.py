@@ -1,13 +1,13 @@
 import os
+import re
 
-from nltk.corpus import stopwords
-from nltk.tokenize import TweetTokenizer
 from color import Colors
 from price import Price
 from gender import Gender
 from shop import Shop
 from term import Term
 from size import Size
+from spell_checker import SpellCheck
 
 
 class Annotater(object):
@@ -21,6 +21,7 @@ class Annotater(object):
         """
         self.data_path = os.path.join("test_dataset")
         self.csv_path = os.path.join(self.data_path)
+        self.spell = SpellCheck()
 
     def annotate(self, color=True, price=True, gender=True, shop=True, size=True):
         """
@@ -33,10 +34,21 @@ class Annotater(object):
             if query:
                 try:
                     value = {}
+                    query = re.sub(' +', ' ', query)
+                    query = query + " "
                     list_token = [item.lower().strip() for item in query.lower().split(' ')]
+                    spell_query = []
+                    is_spell = False
+                    for token in list_token:
+                        spell_word = self.spell.run(token)
+                        spell_query.append(spell_word if '#' not in spell_word else spell_word.split('#')[1])
+                    original_query = " ".join(list_token)
+                    new_query = " ".join(spell_query)
                     if color:
                         value, list_token = Colors().finding_colors(list_tokens=list_token)
                     query = " ".join(list_token)
+                    if original_query != new_query:
+                        is_spell = True
                     if size:
                         query, value = Size().finding_size(query, value)
                     if price:
@@ -46,7 +58,9 @@ class Annotater(object):
                     if shop:
                         query, value = Shop().finding_shop(query, val=value)
                     val = Term().finding_term(query, val=value)
-                    print(query)
+                    val['original_query'] = original_query
+                    val['did_you_mean'] = new_query
+                    val['is_spell'] = is_spell
                     print(val)
                 except Exception as e:
                     import traceback
