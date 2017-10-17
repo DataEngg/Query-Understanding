@@ -3,7 +3,7 @@ import os
 
 class Shop(object):
     def __init__(self):
-        self.data_path = os.path.join("dataset")
+        self.data_path = os.path.abspath(os.path.join("query_understanding", "dataset"))
         self.csv_path = os.path.join(self.data_path)
         self.s = set()
         self.shop()

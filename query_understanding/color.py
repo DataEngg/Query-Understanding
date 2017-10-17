@@ -1,9 +1,8 @@
 import os
 
-
 class Colors(object):
     def __init__(self):
-        self.data_path = os.path.join("dataset")
+        self.data_path = os.path.abspath(os.path.join("query_understanding", "dataset"))
         self.csv_path = os.path.join(self.data_path)
         self.c = set()
         self.color()

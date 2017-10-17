@@ -8,7 +8,7 @@ class Price(object):
     """
 
     def __init__(self):
-        self.data_path = os.path.join("dataset")
+        self.data_path = os.path.abspath(os.path.join("query_understanding", "dataset"))
         self.csv_path = os.path.join(self.data_path)
         self.p = set()
         self.pricing()
@@ -81,7 +81,6 @@ class Price(object):
         if list_token:
             if not isinstance(number, list):
                 list_token_number = " ".join(list_token).split(" " + number + " ")
-                print(list_token_number)
                 if len(list_token_number) >= 2:
                     list_value = " ".join(list_token_number)
                 elif len(list_token_number) == 1:

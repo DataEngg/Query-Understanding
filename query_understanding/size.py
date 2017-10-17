@@ -34,5 +34,4 @@ class Size(object):
                     list_tokens.remove(size)
             query = ' '.join(list_tokens)
 
-        print("Size " + query)
         return query, val

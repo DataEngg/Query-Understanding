@@ -12,7 +12,7 @@ class SpellCheck:
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
     def __init__(self):
-        self.data_path = os.path.join("dataset")
+        self.data_path = os.path.abspath(os.path.join("query_understanding","dataset"))
         self.csv_path = os.path.join(self.data_path)
         self.txt_path = os.path.join(self.data_path)
         self.lWords = self.initialize_dictionary()
@@ -125,7 +125,7 @@ class SpellCheck:
                     word_set.add(line.strip().lower())
         else:
             print(
-                "There's seems to be a problem loading in the word list, ensure availability of words.csv in dataset/csv directory")
+                "There's seems to be a problem loading in the word list, ensure availability of nltk_words.csv in dataset directory")
         return word_set
 
     def run(self, token):
