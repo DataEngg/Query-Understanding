@@ -1,6 +1,6 @@
 appdirs==1.4.3
 beautifulsoup4==4.5.3
-bleach==2.0.0
+bleach==3.3.0
 bottle==0.12.13
 certifi==2017.4.17
 click==6.7
