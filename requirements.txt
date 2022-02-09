@@ -92,7 +92,7 @@ simplegeneric==0.8.1
 six==1.10.0
 soundex==1.1.3
 statsmodels==0.8.0
-tensorflow==1.3.0
+tensorflow==2.5.3
 tensorflow-tensorboard==0.1.6
 termcolor==1.1.0
 terminado==0.6
